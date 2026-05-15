@@ -36,11 +36,11 @@ jobs:
           USER: ${{ vars.AWS_USER }}
         run: |
           # 上传target下的jar到AWS指定目录 改成你服务器真实路径
-          scp -o StrictHostKeyChecking=no target/*.jar ${USER}@${HOST}:/home/boot/
+          mkdir -p /home/ec2-user/app
+          scp -o StrictHostKeyChecking=no target/*.jar ${USER}@${HOST}:/home/ec2-user/app
           
           # 远程执行命令：停旧项目、启新项目
           ssh -o StrictHostKeyChecking=no ${USER}@${HOST} << 'EOF'
-            mkdir -p /home/ec2-user/app
             # 找到正在运行的java进程并杀掉
             ps -ef | grep java | grep jar | awk '{print $2}' | xargs kill -9 2>/dev/null
             # 后台启动新jar 改成你的端口和日志路径
