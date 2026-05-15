@@ -36,8 +36,6 @@ jobs:
           USER: ${{ vars.AWS_USER }}
         run: |
           # 上传target下的jar到AWS指定目录 改成你服务器真实路径
-          sudo mkdir -p /home/ec2-user/app
-          sudo chmod 755 /home/ec2-user/app
           scp -o StrictHostKeyChecking=no target/*.jar ${USER}@${HOST}:/home/ec2-user/app
           
           # 远程执行命令：停旧项目、启新项目
