@@ -43,7 +43,7 @@ jobs:
             # 找到正在运行的java进程并杀掉
             ps -ef | grep java | grep jar | awk '{print $2}' | xargs kill -9 2>/dev/null
             # 后台启动新jar 改成你的端口和日志路径
-            setsid java -jar /home/ec2-user/haha123.jar --server.port=5000  --server.address=0.0.0.0 > /home/ec2-user/app/app.log 2>&1 < /dev/null &
+            setsid java -jar /home/ec2-user/app/haha123.jar --server.port=5000  --server.address=0.0.0.0 > /home/ec2-user/app/app.log 2>&1 < /dev/null &
           EOF
 
 
